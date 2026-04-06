@@ -1,9 +1,9 @@
 {
   "functions": {
-    "api/*.php": { "runtime": "vercel-php@0.11.0" },
-    "*.php": { "runtime": "vercel-php@0.11.0" }
+    "api/*.php": { "runtime": "vercel-php@0.7.5" },
+    "*.php": { "runtime": "vercel-php@0.7.5" }
   },
   "routes": [
-    { "src": "/(.*)", "dest": "/$1.php" }
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
