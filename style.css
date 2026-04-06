@@ -1,0 +1,373 @@
+/* 1. GLOBAL VARIABLES & THEME */
+:root {
+    --bg-dark: #09090b;
+    --sidebar-bg: rgba(15, 23, 42, 0.9);
+    --glass-bg: rgba(24, 24, 27, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --accent: #06b6d4;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --sidebar-width: 280px;
+}
+
+/* 2. BASE RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(circle at 50% -20%, #1e293b, #09090b);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex; 
+    overflow-x: hidden;
+}
+
+/* 3. SIDEBAR NAVIGATION (Fixed Left) */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.side-btn {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.side-btn:hover, .side-btn.active {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary);
+    border-right: 3px solid var(--primary);
+}
+
+.logout-box {
+    margin-top: auto;
+}
+
+.logout-btn {
+    color: #ef4444;
+    text-decoration: none;
+    padding: 14px 18px;
+    display: block;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 10px;
+}
+
+/* 4. MAIN CONTENT AREA (For Dashboard pages with Sidebar) */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: 40px;
+    width: calc(100% - var(--sidebar-width));
+}
+
+/* 5. CINEMATIC COMPONENTS */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.cinematic-text {
+    background: linear-gradient(to right, #3b82f6, #2dd4bf);
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    font-weight: 800;
+}
+
+/* 6. FORMS & INTERACTIVE ELEMENTS */
+input[type="text"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0 20px 0;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.btn {
+    background: linear-gradient(135deg, var(--primary), #2563eb);
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px var(--primary);
+}
+
+/* 7. TABLES (For Leaderboard/History) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    text-align: left;
+    color: var(--text-muted);
+    padding: 15px;
+    border-bottom: 1px solid var(--glass-border);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.01);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 8. QUIZ OPTIONS */
+.option-label {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option-label:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--primary);
+}
+
+input[type="radio"] {
+    margin-right: 15px;
+    accent-color: var(--primary);
+    transform: scale(1.2);
+}
+
+/* 9. UNIVERSAL CENTERING & SCROLL FIX (For Login & Quiz) */
+/* Targets pages without a sidebar */
+body:not(:has(.sidebar)) {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important; 
+    margin: 0 !important;
+    padding: 40px 20px !important;
+    width: 100vw;
+    min-height: 100vh !important; 
+    overflow-y: auto !important; 
+    background-image: radial-gradient(circle at 50% 50%, #1e293b, #09090b) !important;
+}
+
+/* Auto-switch to top-start alignment if content is taller than screen */
+@media (min-height: 1px) {
+    body:not(:has(.sidebar)) {
+        align-items: flex-start;
+    }
+}
+
+body:not(:has(.sidebar)) .card {
+    margin: auto !important; 
+    max-width: 450px; /* Default for Login */
+    width: 100%;
+}
+
+/* Wider card for Quiz specifically */
+body.quiz-page:not(:has(.sidebar)) .card {
+    max-width: 850px;
+}
+
+/* 10. ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* WIDE RANGE QUIZ CONTAINER */
+body.quiz-page:not(:has(.sidebar)) {
+    align-items: flex-start !important; /* Allows scrolling for many questions */
+    padding-top: 50px !important;
+}
+
+body.quiz-page:not(:has(.sidebar)) .card {
+    max-width: 900px; /* Makes the quiz wide and professional */
+    margin-bottom: 50px !important;
+}
+
+/* CUSTOM OPTION CARDS (Glassmorphism) */
+.option-container {
+    display: block;
+    position: relative;
+    padding: 18px 20px 18px 50px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    transition: 0.3s all ease;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.option-container:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+/* Hide default radio but keep functionality */
+.option-container input {
+    position: absolute;
+    opacity: 0; /* This hides the default circle */
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* The custom checkmark/dot - Ensure this exists */
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--glass-border);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* When the radio is checked, style the custom checkmark */
+.option-container input:checked ~ .checkmark {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* Add an inner dot for a professional look */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+}
+
+.option-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Question Styling */
+.question-block {
+    margin-bottom: 40px;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.question-number {
+    color: var(--primary);
+    font-weight: 800;
+    margin-right: 8px;
+}
+/* Styling for Success Messages */
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Styling for Error Messages */
+.alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Fix for floating text appearing outside the card */
+body > b, body > i, body > p:not(.card p) {
+    display: none !important;
+}
